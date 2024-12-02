@@ -160,21 +160,14 @@ namespace Mastermind2_EmreKayaPXL
                     }
                     ToggleDebug();
 
-                    messageBoxResult = MessageBox.Show($"U heeft verloren!\nScore: {score}/100\nAantal pogingen over: {10 - attempts}" +
-                        $"\nWilt u nog eens proberen?", "winnende bericht", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                    if (messageBoxResult == MessageBoxResult.Yes)
-                    {
+                    messageBoxResult = MessageBox.Show($"U heeft verloren!\nScore: {score}/100\nAantal pogingen over: {10 - attempts}");
                         score = 100;
                         ToggleDebug();
                         AllesRessetten();
                         UpdateTitle();
                         randomColorBuilder.Clear();
                         titleRandomColors();
-                    }
-                    else
-                    {
-                        this.Close();
-                    }
+
                     break;
                 default:
                     break;
@@ -275,21 +268,13 @@ namespace Mastermind2_EmreKayaPXL
                 UpdateTitle();
                 ToggleDebug();
 
-                messageBoxResult = MessageBox.Show($"U heeft gewonnen!\nScore: {score}/100\nAantal pogingen over: {10 - attempts}" +
-                    $"\nWilt u nog eens proberen?", "winnende bericht", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                if (messageBoxResult == MessageBoxResult.Yes)
-                {
+                messageBoxResult = MessageBox.Show($"U heeft gewonnen!\nScore: {score}/100\nAantal pogingen over: {10 - attempts}");
                     score = 100;
                     ToggleDebug();
                     AllesRessetten();
                     UpdateTitle();
                     randomColorBuilder.Clear();
                     titleRandomColors();
-                }
-                else
-                {
-                    this.Close();
-                }
                 return;
             }
             else if (attempts > 10)
@@ -573,6 +558,11 @@ namespace Mastermind2_EmreKayaPXL
                 "\nLichte beige rand betekent dat de kleur juist is maar op de verkeerde plaats staat");
             clicked = DateTime.Now; 
             timer.Start();
+        }
+
+        private void Afsluiten_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
