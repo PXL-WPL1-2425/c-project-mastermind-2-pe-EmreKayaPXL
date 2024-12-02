@@ -31,6 +31,19 @@ namespace Mastermind2_EmreKayaPXL
         MessageBoxResult messageBoxResult;
         int MasterMindStrenghtNumber = 0;
         string randomColors;
+       
+//string[] Highscore = new string [15];
+
+        string[] namen = new string [15];
+        int[] pogingen = new int [15];
+        int[] scores = new int [15];
+
+        StringBuilder namenBuilder = new StringBuilder ();
+        StringBuilder pogingBuilder = new StringBuilder ();
+        StringBuilder scoresBuilder = new StringBuilder ();
+
+        
+
 
         public MainWindow()
         {
@@ -53,10 +66,21 @@ namespace Mastermind2_EmreKayaPXL
             {
                 MessageBox.Show("Geef een naam!", "Foutieve invoer");
                 antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
-               
-            }
-        }
 
+                // toon positie van naam in Array
+                for (int i = 0; i < namen.Length; i++)
+                {
+                    namen[i].Equals(antwoord);
+
+                    namenBuilder.Append(namen[i]);
+                }
+                namen[1] = namenBuilder.ToString();
+            }
+
+        private void HighScore()
+        {
+                MessageBox_Show($"Naam :{namen[1]} ");
+        }
 
 
 
@@ -564,5 +588,10 @@ namespace Mastermind2_EmreKayaPXL
         {
             this.Close();
         }
+        private void Highscores_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Naam :{namen[1]} ");
+        }
+
     }
 }
