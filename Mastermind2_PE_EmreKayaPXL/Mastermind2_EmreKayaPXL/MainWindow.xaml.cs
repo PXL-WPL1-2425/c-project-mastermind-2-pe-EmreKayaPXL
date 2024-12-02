@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,11 +35,42 @@ namespace Mastermind2_EmreKayaPXL
         public MainWindow()
         {
             InitializeComponent();
+            StartGame();
             titleRandomColors();
             UpdateTitle();
             timer.Interval = TimeSpan.FromMilliseconds(1);
             timer.Tick += Timer_Tick;
         }
+
+
+
+
+        private void StartGame() 
+        {
+            string antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
+
+            while (string.IsNullOrEmpty(antwoord))
+            {
+                MessageBox.Show("Geef een naam!", "Foutieve invoer");
+                antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
+               
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void HistoryColorsAttempts()
         {
