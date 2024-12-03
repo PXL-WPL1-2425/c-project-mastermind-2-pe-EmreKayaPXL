@@ -147,6 +147,7 @@
 
 
             <TextBlock Grid.Row="4" Grid.ColumnSpan="3" Name="resultTextBlock" FontSize="15" Text="" Height="36"/>
+            <TextBlock Grid.Row="5" Grid.ColumnSpan="3" Name="testTextBlock" FontSize="15" Text="" Height="36"/>
             <TextBox  Grid.ColumnSpan="2" Grid.Row="5" Name="randomColorsTextBox" Visibility="Collapsed" Background="LightSlateGray" Text="" VerticalContentAlignment="Center"/>
             <Button x:Name="CheckButton" Grid.Row="4" Grid.Column="7" Grid.RowSpan="2" Grid.ColumnSpan="2" Content="Check code" Background="Gray" 
                     BorderBrush="Black" BorderThickness="4" Click="CheckButton_Click" Width="100" Height="100"/>

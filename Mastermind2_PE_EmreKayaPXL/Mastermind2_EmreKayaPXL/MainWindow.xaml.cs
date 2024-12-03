@@ -31,16 +31,21 @@ namespace Mastermind2_EmreKayaPXL
         MessageBoxResult messageBoxResult;
         int MasterMindStrenghtNumber = 0;
         string randomColors;
-       
-//string[] Highscore = new string [15];
 
-        string[] namen = new string [15];
-        int[] pogingen = new int [15];
-        int[] scores = new int [15];
 
-        StringBuilder namenBuilder = new StringBuilder ();
-        StringBuilder pogingBuilder = new StringBuilder ();
-        StringBuilder scoresBuilder = new StringBuilder ();
+
+
+
+        private string[] highscore = new string [15];
+        string antwoord;
+
+        //int[] pogingen = new int [15];
+        //int[] scores = new int [15];
+
+        //StringBuilder namenBuilder = new StringBuilder ();
+        //StringBuilder pogingBuilder = new StringBuilder ();
+        //StringBuilder scoresBuilder = new StringBuilder ();
+        
 
         
 
@@ -57,35 +62,54 @@ namespace Mastermind2_EmreKayaPXL
 
 
 
+        string[] namen = new string[15];
 
-        private void StartGame() 
+        private void StartGame()
         {
-            string antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
+            antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
 
             while (string.IsNullOrEmpty(antwoord))
             {
                 MessageBox.Show("Geef een naam!", "Foutieve invoer");
                 antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
 
+                return;
+            }
+            namen[0] = antwoord;
+            //testTextBlock.Text = namen[0];
+               
+        }
                 // toon positie van naam in Array
-                for (int i = 0; i < namen.Length; i++)
-                {
-                    namen[i].Equals(antwoord);
+                //for (int i = 0; i < namen.Length; i++)
+                //{
+                //    namen[i].Equals(antwoord);
+                //
+                //}
 
-                    namenBuilder.Append(namen[i]);
-                }
-                namen[1] = namenBuilder.ToString();
+            private void HighScore()
+            {
+                highscore[0] = ($"{namen[0]} - {attempts}pogingen - {score}/100");
             }
 
-        private void HighScore()
+            //for (int i = 0; i < highscore.Length; i++)
+            //{
+            //    do
+            //    {
+            //        highscore[i] = thisHighScore;
+            //        return;
+            //    }
+            //    while (highscore[i] == null);
+            //}
+
+        private void Afsluiten_Click(object sender, RoutedEventArgs e)
         {
-                MessageBox_Show($"Naam :{namen[1]} ");
+            this.Close();
         }
-
-
-
-
-
+        private void Highscores_Click(object sender, RoutedEventArgs e)
+        {
+            HighScore();
+            MessageBox.Show($"{highscore[0]}");
+        }
 
 
 
@@ -583,15 +607,5 @@ namespace Mastermind2_EmreKayaPXL
             clicked = DateTime.Now; 
             timer.Start();
         }
-
-        private void Afsluiten_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        private void Highscores_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show($"Naam :{namen[1]} ");
-        }
-
     }
 }
