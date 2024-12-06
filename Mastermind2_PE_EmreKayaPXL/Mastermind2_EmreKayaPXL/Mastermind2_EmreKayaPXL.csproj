@@ -98,5 +98,11 @@
   <ItemGroup>
     <Resource Include="stopwatch.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="foto\wooden-bacground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="foto\istockphoto-185007737-612x612.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

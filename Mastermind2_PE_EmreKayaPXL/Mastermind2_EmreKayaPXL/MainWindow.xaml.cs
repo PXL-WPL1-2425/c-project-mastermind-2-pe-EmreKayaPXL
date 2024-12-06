@@ -33,7 +33,7 @@ namespace Mastermind2_EmreKayaPXL
         string randomColors;
         private string[] highscore = new string[15];
         string antwoord;
-        string[] namen = new string[15];
+        List<string> namen = new List <string>();
         StringBuilder randomColorBuilder;
         string label1Color;
         string label2Color;
@@ -54,15 +54,20 @@ namespace Mastermind2_EmreKayaPXL
 
         private void StartGame()
         {
-            antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
-
-            while (string.IsNullOrEmpty(antwoord))
+            do
             {
-                MessageBox.Show("Geef een naam!", "Foutieve invoer");
                 antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
-                return;
-            }
-            namen[0] = antwoord;
+
+                while (string.IsNullOrEmpty(antwoord))
+                {
+                    MessageBox.Show("Geef een naam!", "Foutieve invoer");
+                    antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
+                   
+                }
+                namen.Add(antwoord);
+
+            }while (MessageBox.Show("Wil je naam toevoegen", "nieuwe naam", MessageBoxButton.YesNo) == MessageBoxResult.Yes);
+
         }
 
         private void HighScore()
@@ -171,7 +176,7 @@ namespace Mastermind2_EmreKayaPXL
                 }
             }
             resultTextBlock.Text = "";
-            scoreTextBox.Text = $" Score = 100/100";
+            scoreTextBlock.Text = $" Score = 100/100";
             clicked = DateTime.Now;
             timer.Start();
             timerLabel.Content = "";
@@ -210,7 +215,7 @@ namespace Mastermind2_EmreKayaPXL
                 attempts--;
                 UpdateTitle();
                 ToggleDebug();
-                messageBoxResult = MessageBox.Show($"U heeft gewonnen!\nScore: {score}/100\nAantal pogingen {attempts - 1}");
+                messageBoxResult = MessageBox.Show($"U heeft gewonnen!\nScore: {score}/100\nAantal pogingen {attempts}");
                 sliderInformationLabel.Visibility = Visibility.Visible;
                 maxPogingSlider.Visibility = Visibility.Visible;
                 score = 100;
@@ -435,14 +440,14 @@ namespace Mastermind2_EmreKayaPXL
                     resultTextBlock.Text = "Niet de juiste kleuren gebruikt";
                     break;
             }
-            scoreTextBox.Text = $" Score = {score}/100";
+            scoreTextBlock.Text = $" Score = {score}/100";
             HistoryColorsAttempts();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             clicked = DateTime.Now;
-            scoreTextBox.Text = $" Score = 100/100";
+            scoreTextBlock.Text = $" Score = 100/100";
         }
 
 
