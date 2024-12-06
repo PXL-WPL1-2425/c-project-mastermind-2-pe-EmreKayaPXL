@@ -31,24 +31,16 @@ namespace Mastermind2_EmreKayaPXL
         MessageBoxResult messageBoxResult;
         int MasterMindStrenghtNumber = 0;
         string randomColors;
-
-
-
-
-
-        private string[] highscore = new string [15];
+        private string[] highscore = new string[15];
         string antwoord;
-
-        //int[] pogingen = new int [15];
-        //int[] scores = new int [15];
-
-        //StringBuilder namenBuilder = new StringBuilder ();
-        //StringBuilder pogingBuilder = new StringBuilder ();
-        //StringBuilder scoresBuilder = new StringBuilder ();
-        
-
-        
-
+        string[] namen = new string[15];
+        StringBuilder randomColorBuilder;
+        string label1Color;
+        string label2Color;
+        string label3Color;
+        string label4Color;
+        private bool isInDebug = false;
+        int maxAttempts;
 
         public MainWindow()
         {
@@ -60,10 +52,6 @@ namespace Mastermind2_EmreKayaPXL
             timer.Tick += Timer_Tick;
         }
 
-
-
-        string[] namen = new string[15];
-
         private void StartGame()
         {
             antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
@@ -72,34 +60,15 @@ namespace Mastermind2_EmreKayaPXL
             {
                 MessageBox.Show("Geef een naam!", "Foutieve invoer");
                 antwoord = Interaction.InputBox("Geef je naam in", "Invoer", "Naam");
-
                 return;
             }
             namen[0] = antwoord;
-            //testTextBlock.Text = namen[0];
-               
         }
-                // toon positie van naam in Array
-                //for (int i = 0; i < namen.Length; i++)
-                //{
-                //    namen[i].Equals(antwoord);
-                //
-                //}
 
-            private void HighScore()
-            {
-                highscore[0] = ($"{namen[0]} - {attempts}pogingen - {score}/100");
-            }
-
-            //for (int i = 0; i < highscore.Length; i++)
-            //{
-            //    do
-            //    {
-            //        highscore[i] = thisHighScore;
-            //        return;
-            //    }
-            //    while (highscore[i] == null);
-            //}
+        private void HighScore()
+        {
+            highscore[0] = ($"{namen[0]} - {attempts}pogingen - {score}/100");
+        }
 
         private void Afsluiten_Click(object sender, RoutedEventArgs e)
         {
@@ -110,15 +79,6 @@ namespace Mastermind2_EmreKayaPXL
             HighScore();
             MessageBox.Show($"{highscore[0]}");
         }
-
-
-
-
-
-
-
-
-
 
         private void HistoryColorsAttempts()
         {
@@ -132,93 +92,43 @@ namespace Mastermind2_EmreKayaPXL
             List<Label> Rij8 = new List<Label> { A8, B8, C8, D8 };
             List<Label> Rij9 = new List<Label> { A9, B9, C9, D9 };
             List<Label> Rij10 = new List<Label> { A10, B10, C10, D10 };
-
+            List<Label> Rij11 = new List<Label> { A11, B11, C11, D11 };
+            List<Label> Rij12 = new List<Label> { A12, B12, C12, D12 };
+            List<Label> Rij13 = new List<Label> { A13, B13, C13, D13 };
+            List<Label> Rij14 = new List<Label> { A14, B14, C14, D14 };
+            List<Label> Rij15 = new List<Label> { A15, B15, C15, D15 };
+            List<Label> Rij16 = new List<Label> { A16, B16, C16, D16 };
+            List<Label> Rij17 = new List<Label> { A17, B17, C17, D17 };
+            List<Label> Rij18 = new List<Label> { A18, B18, C18, D18 };
+            List<Label> Rij19 = new List<Label> { A19, B19, C19, D19 };
+            List<Label> Rij20 = new List<Label> { A20, B20, C20, D20 };
             List<Label> kolomHoofd = new List<Label> { label1, label2, label3, label4 };
-
-            switch (attempts)
+            List<List<Label>> Rijen = new List<List<Label>> { Rij1, Rij2, Rij3, Rij4, Rij5, Rij6, Rij7, Rij8, Rij9, Rij10, 
+                                                        Rij11, Rij12, Rij13, Rij14, Rij15, Rij16, Rij17, Rij18, Rij19, Rij20 };
+            if (attempts >= 2 && attempts <= maxAttempts)
             {
-                case 2:
+                for (int j = 0; j < 20; j++)
+                {
                     for (int i = 0; i < 4; i++)
                     {
-                        Rij1[i].Background = kolomHoofd[i].Background;
-                        Rij1[i].BorderBrush = kolomHoofd[i].BorderBrush;
+                        Rijen[attempts - 2][i].Background = kolomHoofd[i].Background;
+                        Rijen[attempts - 2][i].BorderBrush = kolomHoofd[i].BorderBrush;
                     }
-                    break;
-                case 3:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij2[i].Background = kolomHoofd[i].Background;
-                        Rij2[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    break;
-                case 4:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij3[i].Background = kolomHoofd[i].Background;
-                        Rij3[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    break;
-                case 5:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij4[i].Background = kolomHoofd[i].Background;
-                        Rij4[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    break;
-                case 6:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij5[i].Background = kolomHoofd[i].Background;
-                        Rij5[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    break;
-                case 7:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij6[i].Background = kolomHoofd[i].Background;
-                        Rij6[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    break;
-                case 8:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij7[i].Background = kolomHoofd[i].Background;
-                        Rij7[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    break;
-                case 9:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij8[i].Background = kolomHoofd[i].Background;
-                        Rij8[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    break;
-                case 10:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij9[i].Background = kolomHoofd[i].Background;
-                        Rij9[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    break;
-                case 11:
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Rij10[i].Background = kolomHoofd[i].Background;
-                        Rij10[i].BorderBrush = kolomHoofd[i].BorderBrush;
-                    }
-                    ToggleDebug();
-
-                    messageBoxResult = MessageBox.Show($"U heeft verloren!\nScore: {score}/100\nAantal pogingen over: {10 - attempts}");
+                }
+            }
+            if (attempts > maxAttempts)
+            {
+                        ToggleDebug();
+                        StopCountdown();
+                        messageBoxResult = MessageBox.Show($"U heeft verloren!\nScore: {score}/100\nAjjjantal pogingen: {attempts -1}");
+                        sliderInformationLabel.Visibility = Visibility.Visible;
+                        maxPogingSlider.Visibility = Visibility.Visible;
                         score = 100;
                         ToggleDebug();
                         AllesRessetten();
                         UpdateTitle();
                         randomColorBuilder.Clear();
                         titleRandomColors();
-
-                    break;
-                default:
-                    break;
             }
         }
         private void AllesRessetten()
@@ -233,47 +143,32 @@ namespace Mastermind2_EmreKayaPXL
             List<Label> Rij8 = new List<Label> { A8, B8, C8, D8 };
             List<Label> Rij9 = new List<Label> { A9, B9, C9, D9 };
             List<Label> Rij10 = new List<Label> { A10, B10, C10, D10 };
-
+            List<Label> Rij11 = new List<Label> { A11, B11, C11, D11 };
+            List<Label> Rij12 = new List<Label> { A12, B12, C12, D12 };
+            List<Label> Rij13 = new List<Label> { A13, B13, C13, D13 };
+            List<Label> Rij14 = new List<Label> { A14, B14, C14, D14 };
+            List<Label> Rij15 = new List<Label> { A15, B15, C15, D15 };
+            List<Label> Rij16 = new List<Label> { A16, B16, C16, D16 };
+            List<Label> Rij17 = new List<Label> { A17, B17, C17, D17 };
+            List<Label> Rij18 = new List<Label> { A18, B18, C18, D18 };
+            List<Label> Rij19 = new List<Label> { A19, B19, C19, D19 };
+            List<Label> Rij20 = new List<Label> { A20, B20, C20, D20 };
             List<Label> kolomHoofd = new List<Label> { label1, label2, label3, label4 };
+            List<List<Label>> Rijen = new List<List<Label>> { Rij1, Rij2, Rij3, Rij4, Rij5, Rij6, Rij7, Rij8, Rij9, Rij10,
+                                                        Rij11, Rij12, Rij13, Rij14, Rij15, Rij16, Rij17, Rij18, Rij19, Rij20 };
             ComboBox1.SelectedIndex = -1;
             ComboBox2.SelectedIndex = -1;
             ComboBox3.SelectedIndex = -1;
             ComboBox4.SelectedIndex = -1;
-
-            for (int i = 0; i < 4; i++)
+            for (int j = 0; j < 20; j++)
             {
-                kolomHoofd[i].Background = Brushes.Transparent;
-                kolomHoofd[i].BorderBrush = Brushes.Transparent;
-
-                Rij1[i].Background = Brushes.Transparent;
-                Rij1[i].BorderBrush = Brushes.Transparent;
-
-                Rij2[i].Background = Brushes.Transparent;
-                Rij2[i].BorderBrush = Brushes.Transparent;
-
-                Rij3[i].Background = Brushes.Transparent;
-                Rij3[i].BorderBrush = Brushes.Transparent;
-
-                Rij4[i].Background = Brushes.Transparent;
-                Rij4[i].BorderBrush = Brushes.Transparent;
-
-                Rij5[i].Background = Brushes.Transparent;
-                Rij5[i].BorderBrush = Brushes.Transparent;
-
-                Rij6[i].Background = Brushes.Transparent;
-                Rij6[i].BorderBrush = Brushes.Transparent;
-
-                Rij7[i].Background = Brushes.Transparent;
-                Rij7[i].BorderBrush = Brushes.Transparent;
-
-                Rij8[i].Background = Brushes.Transparent;
-                Rij8[i].BorderBrush = Brushes.Transparent;
-
-                Rij9[i].Background = Brushes.Transparent;
-                Rij9[i].BorderBrush = Brushes.Transparent;
-
-                Rij10[i].Background = Brushes.Transparent;
-                Rij10[i].BorderBrush = Brushes.Transparent;
+                for (int i = 0; i < 4; i++)
+                {
+                    Rijen[j][i].Background = Brushes.Transparent;
+                    Rijen[j][i].BorderBrush = Brushes.Transparent;
+                    kolomHoofd[i].Background = Brushes.Transparent;
+                    kolomHoofd[i].BorderBrush = Brushes.Transparent;
+                }
             }
             resultTextBlock.Text = "";
             scoreTextBox.Text = $" Score = 100/100";
@@ -315,21 +210,18 @@ namespace Mastermind2_EmreKayaPXL
                 attempts--;
                 UpdateTitle();
                 ToggleDebug();
-
-                messageBoxResult = MessageBox.Show($"U heeft gewonnen!\nScore: {score}/100\nAantal pogingen over: {10 - attempts}");
-                    score = 100;
-                    ToggleDebug();
-                    AllesRessetten();
-                    UpdateTitle();
-                    randomColorBuilder.Clear();
-                    titleRandomColors();
+                messageBoxResult = MessageBox.Show($"U heeft gewonnen!\nScore: {score}/100\nAantal pogingen {attempts - 1}");
+                sliderInformationLabel.Visibility = Visibility.Visible;
+                maxPogingSlider.Visibility = Visibility.Visible;
+                score = 100;
+                ToggleDebug();
+                AllesRessetten();
+                UpdateTitle();
+                randomColorBuilder.Clear();
+                titleRandomColors();
                 return;
             }
-            else if (attempts > 10)
-            {
-                timerLabel.Content = "";
-            }
-            else if(elapsedTime.Seconds >= 10)
+            else if (elapsedTime.Seconds >= 1000)
             {
                 timer.Stop();
                 MessageBox.Show("Te laat 10 seconden zijn voorbij, er wordt 1 poging toegevoegd");
@@ -348,15 +240,19 @@ namespace Mastermind2_EmreKayaPXL
             {
                 timerLabel.Background = Brushes.DarkGreen;
             }
+            else if (elapsedTime.Seconds >= 2)
+            {
+                sliderInformationLabel.Visibility = Visibility.Collapsed;
+                maxPogingSlider.Visibility = Visibility.Collapsed;
+            }
             else
             {
                 timerLabel.Background = Brushes.Transparent;
             }
         }
 
-        StringBuilder randomColorBuilder;
         private void titleRandomColors()
-        { 
+        {
             string[] colors = { "Rood", "Geel", "Oranje", "Wit", "Groen", "Blauw" };
             Random random = new Random();
             randomColorBuilder = new StringBuilder("Mastermind kleur: ");
@@ -364,29 +260,29 @@ namespace Mastermind2_EmreKayaPXL
             for (int i = 0; i < 4; i++)
             {
 
-                    int randomIndex = random.Next(0, colors.Length);
-                    randomColorBuilder.Append(colors[randomIndex]);
-                    if (i < 3)
-                    {
-                        randomColorBuilder.Append(", ");
-                    }
+                int randomIndex = random.Next(0, colors.Length);
+                randomColorBuilder.Append(colors[randomIndex]);
+                if (i < 3)
+                {
+                    randomColorBuilder.Append(", ");
+                }
             }
             randomColors = randomColorBuilder.ToString();
-            randomColorsTextBox.Text = randomColors;    
+            randomColorsTextBox.Text = randomColors;
         }
 
         private void UpdateTitle()
         {
-            this.Title = $" Mastermind             poging {attempts}/10";
+            this.Title = $" Mastermind             poging {attempts}";
         }
 
         private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBox1.SelectedItem is ComboBoxItem ComboBox1Item)  // als item is geselecteerd
+            if (ComboBox1.SelectedItem is ComboBoxItem ComboBox1Item) 
             {
-                if (ComboBox1Item.Background is SolidColorBrush Kleur) // dan: kleur borstel naar achtergrondskleur van geselecteerde Item
+                if (ComboBox1Item.Background is SolidColorBrush Kleur)
                 {
-                    label1.Background = Kleur;   //label de keur geven van achtergrondskleur van geselecteerde Item  
+                    label1.Background = Kleur; 
                     label1.Content = ComboBox1Item.Content.ToString();
                 }
             }
@@ -425,29 +321,20 @@ namespace Mastermind2_EmreKayaPXL
             }
         }
 
-        string label1Color;
-        string label2Color;
-        string label3Color;
-        string label4Color;
         private void CheckButton_Click(object sender, RoutedEventArgs e)
         {
 
             StartCountDown();
             clicked = DateTime.Now;
-
-            label1.BorderBrush = Brushes.LightGray;
-            label2.BorderBrush = Brushes.LightGray;
-            label3.BorderBrush = Brushes.LightGray;
-            label4.BorderBrush = Brushes.LightGray;
-
+            label1.BorderBrush = Brushes.Transparent;
+            label2.BorderBrush = Brushes.Transparent;
+            label3.BorderBrush = Brushes.Transparent;
+            label4.BorderBrush = Brushes.Transparent;
             string[] titleColors = randomColorsTextBox.Text.Split(':')[1].Split(',');
-
-
             string label1Color = label1.Content.ToString();
             string label2Color = label2.Content.ToString();
             string label3Color = label3.Content.ToString();
             string label4Color = label4.Content.ToString();
-
             MasterMindStrenghtNumber = 0;
             if (randomColorsTextBox.Text.Contains(label1Color))
             {
@@ -555,11 +442,9 @@ namespace Mastermind2_EmreKayaPXL
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             clicked = DateTime.Now;
-            timer.Start();
             scoreTextBox.Text = $" Score = 100/100";
         }
 
-        private bool isInDebug = false;
 
         private void Window_Keydown(object sender, KeyEventArgs e)
         {
@@ -586,9 +471,9 @@ namespace Mastermind2_EmreKayaPXL
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs uit)
         {
-        MessageBoxResult closeTheWindow = MessageBox.Show("Bent u zeker Om het spel te sluiten?","VensterSluiten", MessageBoxButton.YesNo);
-  
-            if (closeTheWindow == MessageBoxResult.Yes )
+            MessageBoxResult closeTheWindow = MessageBox.Show("Bent u zeker Om het spel te sluiten?", "VensterSluiten", MessageBoxButton.YesNo);
+
+            if (closeTheWindow == MessageBoxResult.Yes)
             {
                 uit.Cancel = false;
             }
@@ -604,8 +489,21 @@ namespace Mastermind2_EmreKayaPXL
             MessageBox.Show("Kies de juiste kleur die op de juiste plaats hoort." +
                 "\nRode rand betekent dat de kleur op de juiste plaats staat." +
                 "\nLichte beige rand betekent dat de kleur juist is maar op de verkeerde plaats staat");
-            clicked = DateTime.Now; 
+            clicked = DateTime.Now;
             timer.Start();
+        }
+
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (sliderInformationLabel != null)
+            {
+
+                maxAttempts = (int)maxPogingSlider.Value;
+                sliderInformationLabel.Content = $"Maximum aantal pogingen {maxAttempts}";
+                clicked = DateTime.Now;
+                timer.Start();
+            }
         }
     }
 }
